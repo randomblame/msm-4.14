@@ -10,6 +10,11 @@ fwabs := $(addprefix $(srctree)/,$(filter-out /%,$(fwdir)))$(filter /%,$(fwdir))
 
 fw-external-y := $(subst $(quote),,$(CONFIG_EXTRA_FIRMWARE))
 
+fw-shipped-$(CONFIG_TOUCHSCREEN_ST_FTS_V521) += st_fts_f1.ftb st_fts.ftb st_fts_e5.ftb
+fw-shipped-$(CONFIG_INPUT_PRESS_NDT) += ndt_fw.bin
+fw-shipped-$(CONFIG_TOUCHSCREEN_NT36XX) += novatek_nt36672_f10.fw
+fw-shipped-$(CONFIG_TOUCHSCREEN_GOODIX_GTX8) += goodix_gt9886_cfg_f11.bin goodix_gt9886_fw_f11.bin
+
 quiet_cmd_fwbin = MK_FW   $@
       cmd_fwbin = FWNAME="$(patsubst firmware/%.gen.S,%,$@)";		     \
 		  FWSTR="$(subst /,_,$(subst .,_,$(subst -,_,$(patsubst	     \
