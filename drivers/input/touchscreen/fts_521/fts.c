@@ -1223,7 +1223,7 @@ static ssize_t stm_fts_cmd_show(struct device *dev,
 			res = (res | ERROR_DISABLE_INTER);
 			goto END;
 		}
-#ifdef CONFIG_DRM
+#if 0
 		res = drm_unregister_client(&info->notifier);
 		if (res < 0) {
 			logError(1, "%s ERROR: unregister notifier failed!\n",
@@ -1449,7 +1449,7 @@ static ssize_t stm_fts_cmd_show(struct device *dev,
 		res = ERROR_OP_NOT_ALLOW;
 
 	}
-#ifdef CONFIG_DRM
+#if 0
 	if (drm_register_client(&info->notifier) < 0) {
 		logError(1, "%s ERROR: register notifier failed!\n", tag);
 	}
@@ -4196,7 +4196,7 @@ int fts_chip_powercycle(struct fts_ts_info *info)
 static int fts_init_sensing(struct fts_ts_info *info)
 {
 	int error = 0;
-#ifdef CONFIG_DRM
+#if 0
 	error |= drm_register_client(&info->notifier);
 #endif
 	error |= fts_interrupt_install(info);
@@ -6353,7 +6353,7 @@ static int fts_probe(struct spi_device *client)
 	logError(1, "%s Probe Finished! \n", tag);
 	return OK;
 ProbeErrorExit_7:
-#ifdef CONFIG_DRM
+#if 0
 	drm_unregister_client(&info->notifier);
 #endif
 
@@ -6403,7 +6403,7 @@ static int fts_remove(struct spi_device *client)
 	/* remove interrupt and event handlers */
 	fts_interrupt_uninstall(info);
 
-#ifdef CONFIG_DRM
+#if 0
 	drm_unregister_client(&info->notifier);
 #endif
 
